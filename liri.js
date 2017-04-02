@@ -36,8 +36,8 @@ switch (caseType) {
 		console.log("blank");
 }
 
-function readFs() () {
-	fs.readFile("bank.txt", "utf8", function(error, data) {
+function readFs() {
+	fs.readFile("random.txt", "utf8", function(error, data) {
 		if(error) {
 		  	throw error ("error!!!!");
 		} 
@@ -47,13 +47,17 @@ function readFs() () {
 }
 
 function spotifyReq(songName) {
-	spotify.search({ type: 'track', query: 'dancing in the moonlight' }, function(err, data) {
+	spotify.search({ type: 'track', query: songName }, function(err, data) {
     if ( err ) {
         console.log('Error occurred: ' + err);
         return;
     }
- 
-    console.log(JSON.parse(data).tracks.items.name); 
+ 	console.log("=============================================================================================");
+    console.log("Artists: " + data.tracks.items[0].album.artists[0].name);
+    console.log("Name: " + songName); 
+    console.log("Preview Link: " + data.tracks.items[0].album.artists[0].external_urls.spotify);
+    console.log("Album: " + data.tracks.items[0].name);
+    console.log("=============================================================================================");
 });
 }
 
